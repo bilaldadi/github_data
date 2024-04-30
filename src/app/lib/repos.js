@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export default function Repos() {
     const [repos, setRepos] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage] = useState(9); // Number of repositories per page
+    const [perPage] = useState(9);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedRepo, setSelectedRepo] = useState(null);
 
@@ -17,20 +17,20 @@ export default function Repos() {
         fetchData();
     }, []);
 
-    // Pagination Logic
+    
     const indexOfLastRepo = currentPage * perPage;
     const indexOfFirstRepo = indexOfLastRepo - perPage;
     const currentRepos = repos.slice(indexOfFirstRepo, indexOfLastRepo);
 
-    // Change page
+    
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    // Filter Logic
+    
     const filteredRepos = currentRepos.filter(repo =>
         repo.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Function to handle repo selection
+    
     const handleRepoClick = (repo) => {
         setSelectedRepo(repo);
     };
@@ -66,7 +66,6 @@ export default function Repos() {
     );
 }
 
-// Pagination component
 const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
     const pageNumbers = [];
 
@@ -89,7 +88,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
     );
 };
 
-// RepoDetails component
+
 const RepoDetails = ({ repo }) => {
     return (
         <div className="mt-10">
